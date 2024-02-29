@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto;
+  background-color: #b197fc;
+  background-image: linear-gradient(#b197fc, #845ef7);
+  border-radius: 10px;
+  gap: 30px;
+  padding: 10px;
+  width: 700px;
+  margin: auto;
+}
+
+.inputTitle {
+  grid-column: 1 / span 2;
+  padding: 20px;
+}
+
+input[type="text"] {
+  padding: 12px 20px;
+  border: 1px solid #845ef7;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+form > textarea {
+  grid-column: 1 / span 2;
+  height: 150px;
+  border: 1px solid #845ef7;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+
+form > button {
+  grid-column: 2 / -1;
+  grid-row: 4;
+  position: relative;
+  left: 50%;
+  padding: 15px 30px;
+  width: 50%;
+  font-size: 16px;
+  background-color: #82c91e;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form > button:hover {
+  background-color: #94d82d;
+}
