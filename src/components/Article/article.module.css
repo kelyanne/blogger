@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: baseline;
+}
+
+.cards {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  width: 700px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 #d3f9d8, 0 6px 20px 0 #d3f9d8;
+  /* margin: 0 20px; */
+}
+
+.cardList:nth-child(2n) .cards {
+  flex-basis: calc(50% - 10px);
+}
+
+span {
+  color: #868e96;
+  margin-right: 20px;
+  /* justify-content: ; */
+}

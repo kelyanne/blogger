@@ -8,7 +8,7 @@ export interface ArticleItem {
   category?: string;
 }
 
-interface Store {
+interface Actions {
   setId: (id: number) => void;
   setTitle: (title: string) => void;
   setText: (title: string) => void;
@@ -16,9 +16,10 @@ interface Store {
   setCategory: (title: string) => void;
   articles: ArticleItem[];
   addNewArticle: (newArticle: ArticleItem) => void;
+  clearInputs: () => void;
 }
 
-export const useStore = create<ArticleItem & Store>((set) => ({
+export const useStore = create<ArticleItem & Actions>((set) => ({
   id: 1,
   title: "",
   text: "",
@@ -32,4 +33,5 @@ export const useStore = create<ArticleItem & Store>((set) => ({
   articles: [],
   addNewArticle: (newArticle) =>
     set((state) => ({ articles: [...state.articles, newArticle] })),
+  clearInputs: () => set({ title: "", text: "", author: "", category: "" }),
 }));

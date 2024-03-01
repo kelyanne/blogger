@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import { useStore, ArticleItem } from "../../articleStore";
 import styles from "./blog-form.module.css";
+import { Article } from "../Article/Article";
 
 export function BlogForm() {
   const {
@@ -16,6 +17,7 @@ export function BlogForm() {
     category,
     setText,
     text,
+    clearInputs,
   } = useStore();
 
   function handleAddArticle(event: FormEvent<HTMLButtonElement>) {
@@ -29,38 +31,52 @@ export function BlogForm() {
       text: text,
     };
     addNewArticle(newArticle);
+    clearInputs();
   }
 
+  const disabled =
+    title === "" || author === "" || category == "" || text === ""
+      ? true
+      : false;
+
   return (
-    <div className={styles.container}>
-      <form id="create-blog">
-        <input
-          className={styles.inputTitle}
-          type="text"
-          placeholder="Title"
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <input
-          placeholder="Author"
-          type="text"
-          onChange={(e) => setAuthor(e.target.value)}
-        ></input>
-        <input
-          placeholder="Category"
-          type="text"
-          onChange={(e) => setCategory(e.target.value)}
-        ></input>
-        <textarea
-          placeholder="What is in your mind?"
-          onChange={(e) => setText(e.target.value)}
-        ></textarea>
-        <button onClick={handleAddArticle}>Create</button>
-      </form>
-      <ul>
+    <div>
+      <div className={styles.container}>
+        <form id="create-blog">
+          <input
+            className={styles.inputTitle}
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          ></input>
+          <input
+            placeholder="Author"
+            type="text"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          ></input>
+          <input
+            placeholder="Category"
+            type="text"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          ></input>
+          <textarea
+            placeholder="What is in your mind?"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          ></textarea>
+          <button disabled={disabled} onClick={handleAddArticle}>
+            Create
+          </button>
+        </form>
+      </div>
+      <div className={styles.cardList}>
         {articles.map((article) => (
-          <li key={article.id}>{article.title}</li>
+          <Article key={article.id} article={article} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
